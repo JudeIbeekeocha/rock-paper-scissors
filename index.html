@@ -7,13 +7,23 @@
     <style>
       body {
         background-color: black;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
     </style>
   </head>
   <body>
+    <button class="button" id="rock">Rock</button>
+    <button class="button" id="paper">Paper</button>
+    <button class="button" id="scissors">Scissors</button>
+
+
     <script>
       let humanScore = 0;
       let computerScore = 0;
+      let lives = 5
+
 
       const choices = ["rock", "paper", "scissors"];
 
@@ -40,13 +50,10 @@
       };
 
       const playRound = (
-        computerChoice,
         humanChoice
       ) => {
-        let lives = 5
-        while (lives > 0){
             let computerChoice = getComputerChoice()
-            let humanChoice = getHumanChoice()
+            // let humanChoice = getHumanChoice()
             
             if (humanChoice === computerChoice) {
               console.log(`Tie, you both chose ${humanChoice}`);
@@ -66,13 +73,26 @@
               computerScore++; // Increment computer score
             }
             lives--
-        }
+
+            if (lives === 0){
+              console.log(`Game over! Final Scores: Human - ${humanScore}, Computer - ${computerScore}`)
+            }
       };
 
-      playRound();
-      console.log(
-        `Human score: ${humanScore}, Computer score: ${computerScore}`
-      );
+      const btns = document.querySelectorAll('.button')
+      btns.forEach(btn =>{
+        btn.addEventListener('click', (event) =>{
+          const humanChoice = event.target.id;
+          if (lives > 0){
+            playRound(humanChoice)
+          }
+        })
+      })
+
+      // playRound();
+      // console.log(
+      //   `Human score: ${humanScore}, Computer score: ${computerScore}`
+      // );
     </script>
   </body>
 </html>
