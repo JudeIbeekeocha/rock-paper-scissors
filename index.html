@@ -32,22 +32,6 @@
         return choices[randChoice];
       };
 
-      const getHumanChoice = () => {
-        let valid = true;
-        let choice = prompt("What is your choice?").toLowerCase();
-
-        while (valid) {
-          // if choice is not included in choices
-          if (!choices.includes(choice)) {
-            choice = prompt(
-              `${choice} is not part of the options. Try again`
-            ).toLowerCase();
-          } else {
-            break;
-          }
-        }
-        return choice;
-      };
 
       const playRound = (
         humanChoice
